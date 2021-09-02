@@ -29,7 +29,7 @@ class SelfLearningApplicationTests {
 	@Test
 	@DisplayName("add member")
 	void addMember() throws JsonProcessingException {
-		String dateString = "1999-04-23T10:20:08";
+		String dateString = "1999-06-14T10:20:09";
 		ZonedDateTime HBD = ZonedDateTime.parse(dateString + "+09:00");
 //		ZonedDateTime HBD = ZonedDateTime.now();
 		Date birthdaty = Date.from(HBD.toInstant());
@@ -46,8 +46,8 @@ class SelfLearningApplicationTests {
 		System.out.println(HBD_L + " / " + birthdaty_L);
 
 		Member member = new Member();
-		member.setMember_order(8);
-		member.setName("Chaeyoung");
+		member.setMember_order(9);
+		member.setName("Tzuyu");
 		member.setBirthday(birthdaty);
 		member.setBirthday_withtimezone(birthdaty);
 		System.out.println(member);
@@ -60,7 +60,7 @@ class SelfLearningApplicationTests {
 	@Test
 	@DisplayName("delete member")
 	void deleteMember(){
-		memberRepo.deleteById(10);
+		memberRepo.deleteById(9);
 	}
 
 	@Test

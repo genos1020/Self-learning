@@ -23,7 +23,7 @@ public class Member {
 //    @Column(name = "member_order", columnDefinition = "int2", nullable = false)
     private Integer member_order;
 
-//    @Column(name = "name")
+    @Column(nullable = false)
     private String name;
 
     //@JsonFormat 輸出到前端轉為JSON時才看得出效果
