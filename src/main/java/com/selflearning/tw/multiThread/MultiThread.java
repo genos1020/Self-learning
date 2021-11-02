@@ -14,7 +14,9 @@ public class MultiThread {
 //        ExecutorsDemo.show();
 //        CompletableFuturesDemo.show();
 //        CompletableFuturesDemo.composingCompletableFutures();
-        CompletableFuturesDemo.combineCompletableFuture();
+//        CompletableFuturesDemo.combineCompletableFuture();
+        CompletableFuturesDemo.waitForManyTasks();
+
 
         var mailService = new MailService();
 //        mailService.send();

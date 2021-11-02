@@ -45,4 +45,27 @@ public class CompletableFuturesDemo {
         first.thenCombine(second, (price, exchageRate) -> price*exchageRate)
                 .thenAccept(result -> System.out.println(result));
     }
+
+
+    // Waiting for Many Tasks to Complete
+    public static void waitForManyTasks(){
+        var first = CompletableFuture.supplyAsync(() -> 1);
+        var second = CompletableFuture.supplyAsync(() -> 2);
+        var third = CompletableFuture.supplyAsync(() -> 3);
+        var all = CompletableFuture.allOf(first, second, third);
+        all.thenRun(()->{
+            try {
+              var firstResult = first.get();
+              var secondResult = second.get();
+              var thirdResult = third.get();
+                System.out.println(firstResult);
+                System.out.println(secondResult);
+                System.out.println(thirdResult);
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
+            System.out.println("All are done.");
+        });
+
+    }
 }
