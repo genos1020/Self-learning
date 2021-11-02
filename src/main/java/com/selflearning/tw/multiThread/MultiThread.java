@@ -1,5 +1,6 @@
 package com.selflearning.tw.multiThread;
 
+import com.selflearning.tw.multiThread.executors.CompletableFuturesDemo;
 import com.selflearning.tw.multiThread.executors.ExecutorsDemo;
 
 public class MultiThread {
@@ -9,6 +10,7 @@ public class MultiThread {
 //        System.out.println(Runtime.getRuntime().availableProcessors());
 
 //        ThreadDemo.show();
-        ExecutorsDemo.show();
+//        ExecutorsDemo.show();
+        CompletableFuturesDemo.show();
     }
 }
