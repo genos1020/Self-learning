@@ -15,4 +15,20 @@ public class CompletableFuturesDemo {
             e.printStackTrace();
         }
     }
+
+    // Composing Completable Futures
+    public static void composingCompletableFutures(){
+
+        getUserEmailAsync()
+                .thenCompose(CompletableFuturesDemo::getPlaylistAsync)
+                .thenAccept(p -> System.out.println(p));
+    }
+
+    public static CompletableFuture<String> getUserEmailAsync(){
+        return CompletableFuture.supplyAsync(() -> "email");
+    }
+
+    public static CompletableFuture<String> getPlaylistAsync(String email){
+        return CompletableFuture.supplyAsync(() -> "playlist");
+    }
 }
