@@ -31,4 +31,18 @@ public class CompletableFuturesDemo {
     public static CompletableFuture<String> getPlaylistAsync(String email){
         return CompletableFuture.supplyAsync(() -> "playlist");
     }
+
+
+    // Combining Completable Futures
+    public static void combineCompletableFuture(){
+        var first = CompletableFuture
+                                                .supplyAsync(()-> "20USD")
+                                                .thenApply(str -> {
+                                                    var price = str.replace("USD", "");
+                                                    return Integer.parseInt(price);
+                                                });
+        var second = CompletableFuture.supplyAsync(()-> 0.9);
+        first.thenCombine(second, (price, exchageRate) -> price*exchageRate)
+                .thenAccept(result -> System.out.println(result));
+    }
 }
