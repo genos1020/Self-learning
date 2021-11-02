@@ -1,5 +1,6 @@
 package com.selflearning.tw.multiThread;
 
+import com.selflearning.tw.multiThread.concurrency.ExecutorDemo;
 import com.selflearning.tw.multiThread.concurrency.ThreadDemo;
 
 public class MultiThread {
@@ -8,6 +9,7 @@ public class MultiThread {
 //        System.out.println(Thread.activeCount());
 //        System.out.println(Runtime.getRuntime().availableProcessors());
 
-        ThreadDemo.show();
+//        ThreadDemo.show();
+        ExecutorDemo.show();
     }
 }
