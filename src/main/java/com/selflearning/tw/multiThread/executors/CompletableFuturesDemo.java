@@ -2,6 +2,7 @@ package com.selflearning.tw.multiThread.executors;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 public class CompletableFuturesDemo {
@@ -67,5 +68,21 @@ public class CompletableFuturesDemo {
             System.out.println("All are done.");
         });
 
+    }
+
+
+    // Handling timeouts
+    public static void handleTimeouts(){
+        var future = CompletableFuture.supplyAsync(() -> {
+            LongTask.simulate();
+            return 1;
+        });
+        try {
+            var result = future.completeOnTimeout(1, 1, TimeUnit.SECONDS)
+                    .get();
+            System.out.println(result);
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 }
