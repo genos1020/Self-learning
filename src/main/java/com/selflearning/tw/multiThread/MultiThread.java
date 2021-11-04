@@ -1,22 +1,44 @@
 package com.selflearning.tw.multiThread;
 
-import com.selflearning.tw.multiThread.executors.CompletableFuturesDemo;
-import com.selflearning.tw.multiThread.executors.ExecutorsDemo;
-import com.selflearning.tw.multiThread.executors.MailService;
+import com.selflearning.tw.multiThread.executors.*;
+
+import java.time.Duration;
+import java.time.LocalTime;
+import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 public class MultiThread {
 
     public static void main(String[] args) {
-//        System.out.println(Thread.activeCount());
-//        System.out.println(Runtime.getRuntime().availableProcessors());
+//        System.out.println("Thread this program using: " + Thread.activeCount());
+//        System.out.println("Thread available: " + Runtime.getRuntime().availableProcessors());
 
 //        ThreadDemo.show();
 //        ExecutorsDemo.show();
-//        CompletableFuturesDemo.show();
+        CompletableFuturesDemo.show();
 //        CompletableFuturesDemo.composingCompletableFutures();
 //        CompletableFuturesDemo.combineCompletableFuture();
 //        CompletableFuturesDemo.waitForManyTasks();
-        CompletableFuturesDemo.handleTimeouts();
+//        CompletableFuturesDemo.handleTimeouts();
+
+
+        var start = LocalTime.now();
+        FlightService service = new FlightService();
+//        service.getQuote("site1")
+//                .thenAccept(System.out::println);
+        var futures = service.getQuotes()
+                .map(future -> future.thenAccept(System.out::println))
+                .collect(Collectors.toList());
+
+        CompletableFuture
+                .allOf(
+                    // new CompletableFuture[0] => 空的Completable array 告知我們要的結果是CompletableFuture array
+                    futures.toArray(new CompletableFuture[0])
+                ).thenRun(() -> {
+                    var end = LocalTime.now();
+                    Duration duration = Duration.between(start, end);
+                    System.out.println("Retrieved all quotes in " + duration.toMillis() + " msec.");
+                });
 
 
         var mailService = new MailService();
