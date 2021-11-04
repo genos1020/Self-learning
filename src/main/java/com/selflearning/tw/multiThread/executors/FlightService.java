@@ -12,7 +12,6 @@ public class FlightService {
         return sites.stream().map(this::getQuote);
     }
 
-
     public CompletableFuture<Quote> getQuote(String site){
         return CompletableFuture.supplyAsync(()->{
             System.out.println("Getting a quote from "+ site);

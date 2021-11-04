@@ -31,7 +31,7 @@ public class MultiThread {
                 .collect(Collectors.toList());
 
         CompletableFuture
-                .allOf(
+                .allOf( // 必須等到所有都完成。 allOf 傳入的是array 因此要將list 轉為array
                     // new CompletableFuture[0] => 空的Completable array 告知我們要的結果是CompletableFuture array
                     futures.toArray(new CompletableFuture[0])
                 ).thenRun(() -> {
