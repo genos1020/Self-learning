@@ -2,11 +2,14 @@ package com.selflearning.tw;
 
 
 import com.selflearning.tw.vo.Album;
+import lombok.Data;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @DisplayName("When running EqualsAndHashCodeTests")
 public class EqualsAndHashCodeTests {
@@ -58,5 +61,69 @@ public class EqualsAndHashCodeTests {
         System.out.println("###################### 5");
         System.out.println(map.get(a3));
 
+    }
+
+    @Test
+    @DisplayName("list stream groupby test")
+    void streamGroupByTest(){
+        BlogPost b1 = new BlogPost("t1", "a1", "type1",1);
+        BlogPost b2 = new BlogPost("t2", "a2", "type2",2);
+        BlogPost b3 = new BlogPost("t3", "a3", "type1",3);
+        BlogPost b4 = new BlogPost("t4", "a4", "type1",4);
+        List<BlogPost> list = new ArrayList<>();
+        list.add(b1);
+        list.add(b4);
+        list.add(b2);
+        list.add(b3);
+        list.forEach(System.out::println);
+
+        System.out.println("========================================================");
+        list.stream().collect(Collectors.groupingBy(BlogPost::getType))
+                .forEach((k,v) -> System.out.println(k + "|" + v));
+        System.out.println("========================================================");
+        Map<String, BlogPost> groupByTypeGetMaxLikeMap = list.stream()
+                .collect(Collectors.toMap(BlogPost::getType, Function.identity(),
+                        BinaryOperator.maxBy(Comparator.comparing(BlogPost::getLikes))
+                ));
+//                .collect(Collectors.groupingBy(BlogPost::getType,
+////                                    Collectors.mapping()
+//                                Collectors.maxBy(Comparator.comparing(BlogPost::getLikes))
+//
+//                        )
+//                );
+
+        System.out.println(groupByTypeGetMaxLikeMap);
+        System.out.println("=========================== Final =============================");
+        list.stream().peek(l -> {
+            if(groupByTypeGetMaxLikeMap.containsKey(l.getType())){
+                l.setLikes(groupByTypeGetMaxLikeMap.get(l.getType()).getLikes());
+            }
+        }).forEach(System.out::println);
+
+//                .forEach((k,v) -> {
+//                    System.out.println(k + " @@@@ " + v);
+//                    if (list.forEach(l -> l.getType().contains(k))) {
+//                        System.out.println(v);
+//                    } else {
+//                        System.out.println("not contain");
+//                    }
+//                });
+
+    }
+
+}
+
+@Data
+class BlogPost {
+    String title;
+    String author;
+    String type;
+    Integer likes;
+
+    public BlogPost(String t1, String a1, String type1, Integer i) {
+        title = t1;
+        author = a1;
+        type = type1;
+        likes = i;
     }
 }
