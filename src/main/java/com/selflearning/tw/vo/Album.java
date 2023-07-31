@@ -8,10 +8,29 @@ import java.util.Objects;
 public class Album {
 
     private Integer number;
-    private String albumName;
+    private String albumName = "twice";
+
+    public Album() {
+    }
 
     public Album(Integer number, String albumName) {
         this.number = number;
+        this.albumName = albumName;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
+
+    public String getAlbumName() {
+        return albumName;
+    }
+
+    public void setAlbumName(String albumName) {
         this.albumName = albumName;
     }
 
@@ -46,5 +65,13 @@ public class Album {
     public int hashCode() {
         System.out.println(number + ", " + albumName + " ===== hashCode: " + Objects.hash(number, albumName));
         return Objects.hash(number, albumName);
+    }
+
+    @Override
+    public String toString() {
+        return "Album{" +
+                "number=" + number +
+                ", albumName='" + albumName + '\'' +
+                '}';
     }
 }

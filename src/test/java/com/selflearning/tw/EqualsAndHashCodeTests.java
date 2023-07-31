@@ -133,6 +133,13 @@ public class EqualsAndHashCodeTests {
         }
     };
 
+    @Test
+    void te(){
+        int a = 10;
+        int b = 10;
+        System.out.println(a == b);
+    }
+
 }
 
 @Data

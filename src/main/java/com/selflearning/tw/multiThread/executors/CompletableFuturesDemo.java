@@ -22,20 +22,20 @@ public class CompletableFuturesDemo {
 
         // non-blocking
         // thenAccept => main thread / thenAcceptAsync => ForkJoinPool.commonPool-worker-7 (另外的thread中執行)
-//        withExecutorFuture.thenAcceptAsync((q)-> {
-//            System.out.println(Thread.currentThread().getName());
-//            System.out.println(q);
-//        }); // 2
-//        System.out.println("lez go"); // 1
+        withExecutorFuture.thenAcceptAsync((q)-> {
+            System.out.println(Thread.currentThread().getName());
+            System.out.println(q);
+        }); // 2
+        System.out.println("lez go"); // 1
 
         // blocking
-        try {
-            System.out.println(Thread.currentThread().getName());
-            System.out.println(withExecutorFuture.get()); // 1
-            System.out.println("lez go"); // 2
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            System.out.println(Thread.currentThread().getName());
+//            System.out.println(withExecutorFuture.get()); // 1
+//            System.out.println("lez go"); // 2
+//        } catch (InterruptedException | ExecutionException e) {
+//            e.printStackTrace();
+//        }
 
         Supplier<Integer> task = () -> 1;
         var future = CompletableFuture.supplyAsync(task); // non-blocking
@@ -99,6 +99,7 @@ public class CompletableFuturesDemo {
             }
             System.out.println("All are done.");
         });
+        System.out.println("All are done 2.");
 
     }
 

@@ -10,15 +10,15 @@ import java.util.stream.Collectors;
 public class MultiThread {
 
     public static void main(String[] args) {
-//        System.out.println("Thread this program using: " + Thread.activeCount());
-//        System.out.println("Thread available: " + Runtime.getRuntime().availableProcessors());
+        System.out.println("Thread this program using: " + Thread.activeCount());
+        System.out.println("Thread available: " + Runtime.getRuntime().availableProcessors());
 
 //        ThreadDemo.show();
 //        ExecutorsDemo.show();
-        CompletableFuturesDemo.show();
+//        CompletableFuturesDemo.show();
 //        CompletableFuturesDemo.composingCompletableFutures();
 //        CompletableFuturesDemo.combineCompletableFuture();
-//        CompletableFuturesDemo.waitForManyTasks();
+        CompletableFuturesDemo.waitForManyTasks();
 //        CompletableFuturesDemo.handleTimeouts();
 
 
@@ -41,9 +41,9 @@ public class MultiThread {
                 });
 
 
-        var mailService = new MailService();
-//        mailService.send();
-        mailService.sendAsync();
+//        var mailService = new MailService();
+////        mailService.send();
+//        mailService.sendAsync();
         System.out.println("Hey gir");
 
         try {

@@ -40,12 +40,13 @@ public class Member {
     ##### 如果資料庫中的欄位資料型態是timestamp without time zone 就沒差 #####
     * */
 //    @Column(name ="birthday")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+9") // 如果是用 ZonedDateTime 存
-//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8") // 如果是用 LocalDateTime 存
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+9") // 如果是用 ZonedDateTime 存
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8") // 如果是用 LocalDateTime 存
     private Date birthday;
 
 //    @Column(name = "birthday_withtimezone")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+9")
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+9") // 如果是用 ZonedDateTime 存
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8") // 如果是用 LocalDateTime 存
     private Date birthday_withtimezone;
 
 }

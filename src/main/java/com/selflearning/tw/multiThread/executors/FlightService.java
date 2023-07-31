@@ -14,7 +14,7 @@ public class FlightService {
 
     public CompletableFuture<Quote> getQuote(String site){
         return CompletableFuture.supplyAsync(()->{
-            System.out.println("Getting a quote from "+ site);
+            System.out.println("Getting a quote from "+ site + " / " + Thread.currentThread().getName());
 
             var random = new Random();
             LongTask.simulate(1_000 + random.nextInt(2_000));
